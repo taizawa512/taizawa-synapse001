@@ -1,25 +1,12 @@
 {
 	"name": "MySql2",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "MySql",
 		"typeProperties": {
-			"server": "test",
-			"port": "1111",
-			"database": "testdb",
-			"username": "test",
-			"sslMode": 1,
-			"useSystemTrustStore": 0,
-			"password": {
-				"type": "AzureKeyVaultSecret",
-				"store": {
-					"referenceName": "AzureKeyVault1",
-					"type": "LinkedServiceReference"
-				},
-				"secretName": "test"
-			},
-			"driverVersion": "v2"
+			"connectionString": "server=test;port=1111;database=testdb;uid=test",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDc5MkNCMjBGLUM2MTgtNDY3NS05MDJFLTRGNDAzNzA2MTlFOV82MzRlNWE5YS02ZTZjLTQ0MTctOWI0Yi1hYjM3Y2YyYjkyZDYiDQp9"
 		}
-	},
-	"type": "Microsoft.Synapse/workspaces/linkedservices"
+	}
 }
