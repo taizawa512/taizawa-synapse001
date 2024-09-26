@@ -11,8 +11,14 @@
 		"MySql1_password": {
 			"value": ""
 		},
+		"MySql2_connectionString": {
+			"value": "Server=test;Port=1111;Database=testdb;User=test;SSLMode=1;UseSystemTrustStore=0"
+		},
 		"taizawasynapse001-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:taizawasynapse001.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://taizawa-akv01.vault.azure.net/"
 		},
 		"AzureSqlDatabase_taizawa001_properties_typeProperties_server": {
 			"value": "taizawa001.database.windows.net"

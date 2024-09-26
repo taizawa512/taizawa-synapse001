@@ -15,10 +15,19 @@
 			"type": "secureString",
 			"metadata": "'MySql1' の 'password' のセキュリティで保護された文字列"
 		},
+		"MySql2_connectionString": {
+			"type": "secureString",
+			"metadata": "'MySql2' の 'connectionString' のセキュリティで保護された文字列",
+			"defaultValue": "Server=test;Port=1111;Database=testdb;User=test;SSLMode=1;UseSystemTrustStore=0"
+		},
 		"taizawasynapse001-WorkspaceDefaultSqlServer_connectionString": {
 			"type": "secureString",
 			"metadata": "'taizawasynapse001-WorkspaceDefaultSqlServer' の 'connectionString' のセキュリティで保護された文字列",
 			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:taizawasynapse001.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://taizawa-akv01.vault.azure.net/"
 		},
 		"AzureSqlDatabase_taizawa001_properties_typeProperties_server": {
 			"type": "string",
@@ -269,6 +278,19 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/AzureKeyVault1')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/AzureSqlDatabase_taizawa001')]",
 			"type": "Microsoft.Synapse/workspaces/linkedServices",
 			"apiVersion": "2019-06-01-preview",
@@ -318,6 +340,29 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/MySql2')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "MySql",
+				"typeProperties": {
+					"connectionString": "[parameters('MySql2_connectionString')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "test"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/AzureKeyVault1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/taizawasynapse001-WorkspaceDefaultSqlServer')]",
