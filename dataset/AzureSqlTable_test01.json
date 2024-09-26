@@ -1,0 +1,94 @@
+{
+	"name": "AzureSqlTable_test01",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase_taizawa001",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "LOT_RLS_CD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ACPT_NO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "HOPE_ORDER_NO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EVENT_CD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PERF_CD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VENUE_CD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SL_STKND_TYP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WILDC_FLG",
+				"type": "nvarchar"
+			},
+			{
+				"name": "STKT_SL_STKND_CD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "STK_STKND_CD",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TRGH_PERF_NUMTM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NUMSL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "HOPE_RSLT_ELCTN_TYP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "HOPE_LOST_RSN_TYP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CREATE_USRID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CREATE_DT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UPDATE_USRID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UPDATE_DT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "HOPE_FRC_LOST_FLG",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "test01"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}
