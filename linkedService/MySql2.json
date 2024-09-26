@@ -4,7 +4,12 @@
 		"annotations": [],
 		"type": "MySql",
 		"typeProperties": {
-			"connectionString": "Server=test;Port=1111;Database=testdb;User=test;SSLMode=1;UseSystemTrustStore=0",
+			"server": "test",
+			"port": "1111",
+			"database": "testdb",
+			"username": "test",
+			"sslMode": 1,
+			"useSystemTrustStore": 0,
 			"password": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
@@ -12,7 +17,8 @@
 					"type": "LinkedServiceReference"
 				},
 				"secretName": "test"
-			}
+			},
+			"driverVersion": "v2"
 		}
 	},
 	"type": "Microsoft.Synapse/workspaces/linkedservices"
