@@ -22,7 +22,7 @@
 					"scripts": [
 						{
 							"type": "NonQuery",
-							"text": "waitfor delay 05:00;"
+							"text": "WAITFOR DELAY '05:00';  "
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
