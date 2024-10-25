@@ -17,8 +17,7 @@
 		},
 		"MySql2_connectionString": {
 			"type": "secureString",
-			"metadata": "'MySql2' の 'connectionString' のセキュリティで保護された文字列",
-			"defaultValue": "Server=test;Port=1111;Database=testdb;User=test;SSLMode=1;UseSystemTrustStore=0"
+			"metadata": "'MySql2' の 'connectionString' のセキュリティで保護された文字列"
 		},
 		"taizawasynapse001-WorkspaceDefaultSqlServer_connectionString": {
 			"type": "secureString",
@@ -349,20 +348,10 @@
 				"annotations": [],
 				"type": "MySql",
 				"typeProperties": {
-					"connectionString": "[parameters('MySql2_connectionString')]",
-					"password": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "AzureKeyVault1",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "test"
-					}
+					"connectionString": "[parameters('MySql2_connectionString')]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/linkedServices/AzureKeyVault1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/taizawasynapse001-WorkspaceDefaultSqlServer')]",
@@ -447,6 +436,48 @@
 			},
 			"dependsOn": [],
 			"location": "japaneast"
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Pipeline')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "Script1",
+						"type": "Script",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"linkedServiceName": {
+							"referenceName": "AzureSqlDatabase_taizawa001",
+							"type": "LinkedServiceReference"
+						},
+						"typeProperties": {
+							"scripts": [
+								{
+									"type": "NonQuery",
+									"text": "waitfor delay 05:00;"
+								}
+							],
+							"scriptBlockExecutionTimeout": "02:00:00"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/AzureSqlDatabase_taizawa001')]"
+			]
 		}
 	]
 }

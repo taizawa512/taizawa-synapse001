@@ -12,7 +12,7 @@
 			"value": ""
 		},
 		"MySql2_connectionString": {
-			"value": "Server=test;Port=1111;Database=testdb;User=test;SSLMode=1;UseSystemTrustStore=0"
+			"value": ""
 		},
 		"taizawasynapse001-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:taizawasynapse001.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
