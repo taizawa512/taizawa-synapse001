@@ -62,6 +62,48 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('workspaceName'), '/Pipeline')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "Script1",
+						"type": "Script",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"linkedServiceName": {
+							"referenceName": "AzureSqlDatabase_taizawa001",
+							"type": "LinkedServiceReference"
+						},
+						"typeProperties": {
+							"scripts": [
+								{
+									"type": "NonQuery",
+									"text": "WAITFOR DELAY '05:00';  "
+								}
+							],
+							"scriptBlockExecutionTimeout": "02:00:00"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/AzureSqlDatabase_taizawa001')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/Pipeline_2407230030005184')]",
 			"type": "Microsoft.Synapse/workspaces/pipelines",
 			"apiVersion": "2019-06-01-preview",
@@ -416,6 +458,96 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/Dataflow1')]",
+			"type": "Microsoft.Synapse/workspaces/dataflows",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "AzureSqlTable_test01",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "AzureSqlTable_test01",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [],
+					"scriptLines": [
+						"source(output(",
+						"          LOT_RLS_CD as string,",
+						"          ACPT_NO as string,",
+						"          HOPE_ORDER_NO as string,",
+						"          EVENT_CD as string,",
+						"          PERF_CD as string,",
+						"          VENUE_CD as string,",
+						"          SL_STKND_TYP as string,",
+						"          WILDC_FLG as string,",
+						"          STKT_SL_STKND_CD as string,",
+						"          STK_STKND_CD as string,",
+						"          TRGH_PERF_NUMTM as string,",
+						"          NUMSL as string,",
+						"          HOPE_RSLT_ELCTN_TYP as string,",
+						"          HOPE_LOST_RSN_TYP as string,",
+						"          CREATE_USRID as string,",
+						"          CREATE_DT as string,",
+						"          UPDATE_USRID as string,",
+						"          UPDATE_DT as string,",
+						"          HOPE_FRC_LOST_FLG as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> source1",
+						"source1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          LOT_RLS_CD as string,",
+						"          ACPT_NO as string,",
+						"          HOPE_ORDER_NO as string,",
+						"          EVENT_CD as string,",
+						"          PERF_CD as string,",
+						"          VENUE_CD as string,",
+						"          SL_STKND_TYP as string,",
+						"          WILDC_FLG as string,",
+						"          STKT_SL_STKND_CD as string,",
+						"          STK_STKND_CD as string,",
+						"          TRGH_PERF_NUMTM as string,",
+						"          NUMSL as string,",
+						"          HOPE_RSLT_ELCTN_TYP as string,",
+						"          HOPE_LOST_RSN_TYP as string,",
+						"          CREATE_USRID as string,",
+						"          CREATE_DT as string,",
+						"          UPDATE_USRID as string,",
+						"          UPDATE_DT as string,",
+						"          HOPE_FRC_LOST_FLG as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/datasets/AzureSqlTable_test01')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/WorkspaceSystemIdentity')]",
 			"type": "Microsoft.Synapse/workspaces/credentials",
 			"apiVersion": "2019-06-01-preview",
@@ -436,48 +568,6 @@
 			},
 			"dependsOn": [],
 			"location": "japaneast"
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/Pipeline')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "Script1",
-						"type": "Script",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"linkedServiceName": {
-							"referenceName": "AzureSqlDatabase_taizawa001",
-							"type": "LinkedServiceReference"
-						},
-						"typeProperties": {
-							"scripts": [
-								{
-									"type": "NonQuery",
-									"text": "WAITFOR DELAY '05:00';  "
-								}
-							],
-							"scriptBlockExecutionTimeout": "02:00:00"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/linkedServices/AzureSqlDatabase_taizawa001')]"
-			]
 		}
 	]
 }
