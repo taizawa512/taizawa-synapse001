@@ -1,0 +1,17 @@
+{
+	"name": "deletetest",
+	"properties": {
+		"content": {
+			"query": "test",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
