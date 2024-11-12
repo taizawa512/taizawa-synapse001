@@ -1,0 +1,14 @@
+{
+	"name": "deletetest",
+	"properties": {
+		"type": "UDFLibrary",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"aaa(string) as string = \"a\""
+			]
+		}
+	}
+}
