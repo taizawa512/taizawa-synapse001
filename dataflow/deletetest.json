@@ -5,6 +5,10 @@
 		"typeProperties": {
 			"sources": [
 				{
+					"dataset": {
+						"referenceName": "AzureSqlTable_test01",
+						"type": "DatasetReference"
+					},
 					"name": "source1"
 				}
 			],
@@ -18,8 +22,31 @@
 				"parameters{",
 				"     パラメーター1 as string",
 				"}",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source1",
+				"source(output(",
+				"          LOT_RLS_CD as string,",
+				"          ACPT_NO as string,",
+				"          HOPE_ORDER_NO as string,",
+				"          EVENT_CD as string,",
+				"          PERF_CD as string,",
+				"          VENUE_CD as string,",
+				"          SL_STKND_TYP as string,",
+				"          WILDC_FLG as string,",
+				"          STKT_SL_STKND_CD as string,",
+				"          STK_STKND_CD as string,",
+				"          TRGH_PERF_NUMTM as string,",
+				"          NUMSL as string,",
+				"          HOPE_RSLT_ELCTN_TYP as string,",
+				"          HOPE_LOST_RSN_TYP as string,",
+				"          CREATE_USRID as string,",
+				"          CREATE_DT as string,",
+				"          UPDATE_USRID as string,",
+				"          UPDATE_DT as string,",
+				"          HOPE_FRC_LOST_FLG as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
 				"source1 sink(validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
