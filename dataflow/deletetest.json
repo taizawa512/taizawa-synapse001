@@ -19,9 +19,6 @@
 			],
 			"transformations": [],
 			"scriptLines": [
-				"parameters{",
-				"     パラメーター1 as string",
-				"}",
 				"source(output(",
 				"          LOT_RLS_CD as string,",
 				"          ACPT_NO as string,",
