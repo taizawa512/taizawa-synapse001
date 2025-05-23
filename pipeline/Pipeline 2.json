@@ -19,7 +19,13 @@
 						"referenceName": "Notebook 1",
 						"type": "NotebookReference"
 					},
-					"snapshot": true
+					"snapshot": true,
+					"conf": {
+						"spark.dynamicAllocation.enabled": true,
+						"spark.dynamicAllocation.minExecutors": 1,
+						"spark.dynamicAllocation.maxExecutors": 2
+					},
+					"numExecutors": 1
 				}
 			}
 		],
