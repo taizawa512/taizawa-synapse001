@@ -853,6 +853,37 @@
 			},
 			"dependsOn": [],
 			"location": "japaneast"
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Trigger1')]",
+			"type": "Microsoft.Synapse/workspaces/triggers",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Pipeline 4",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 15,
+						"startTime": "2025-08-06T15:45:00",
+						"endTime": "2025-08-06T18:00:00",
+						"timeZone": "Tokyo Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/pipelines/Pipeline 4')]"
+			]
 		}
 	]
 }
