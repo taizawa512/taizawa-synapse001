@@ -1,0 +1,20 @@
+{
+	"name": "Dataverse1",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "CommonDataServiceForApps",
+		"typeProperties": {
+			"deploymentType": "Online",
+			"serviceUri": "aaa",
+			"authenticationType": "AADServicePrincipal",
+			"servicePrincipalId": "aaaa",
+			"servicePrincipalCredentialType": "ServicePrincipalKey",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VAMjU2NzQ4OUQtRUNGMS00ODZBLUI3OTctRkRFM0IyQjc2MzU2Xzk1NTk3Njg1LTkxZDItNDU5OS04ODE1LTQ1N2RmNDNkZjQyYiINCn0="
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
